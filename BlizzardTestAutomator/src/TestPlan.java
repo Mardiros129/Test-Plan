@@ -115,8 +115,9 @@ public class TestPlan {
 	}
 
 	
-	/* After retrieving a given Item with weapon data, verify that the “min” value equals 
-	 * the “exactMin” value rounded.
+	/* After retrieving a given Item with weapon data, verify that the “min” value is 
+	 * equivalent to the “exactMin” value. This will be calculated by rounding the 
+	 * “exactMin” value to the nearest whole number and comparing it to the “min” value.
 	 */
 	public boolean Test3() throws JSONException {
 		boolean testResults = true;
@@ -124,7 +125,7 @@ public class TestPlan {
 		for (int i = 0; i < weaponList.size(); i++) {
 			JSONObject damage = weaponList.get(i).getJSONObject("weaponInfo").getJSONObject("damage");
 			
-			if (damage.getInt("min") != (int)damage.getDouble("exactMin"))
+			if (damage.getInt("min") != Math.round(damage.getDouble("exactMin")))
 				testResults = false;
 		}
 		
@@ -132,8 +133,9 @@ public class TestPlan {
 	}
 	
 	
-	/* After retrieving a given Item with weapon data, verify that the “max” value equals 
-	 * the “exactMax” value rounded.
+	/* After retrieving a given Item with weapon data, verify that the “max” value is 
+	 * equivalent to the “exactMax” value. This will be calculated by rounding the 
+	 * “exactMax” value to the nearest whole number and comparing it to the “max” value.
 	 */
 	public boolean Test4() throws JSONException {
 		boolean testResults = true;
@@ -141,7 +143,7 @@ public class TestPlan {
 		for (int i = 0; i < weaponList.size(); i++) {
 			JSONObject damage = weaponList.get(i).getJSONObject("weaponInfo").getJSONObject("damage");
 			
-			if (damage.getInt("max") != (int)damage.getDouble("exactMax"))
+			if (damage.getInt("max") != Math.round(damage.getDouble("exactMax")))
 				testResults = false;
 		}
 		
